@@ -27,17 +27,6 @@ public final class RMIProtocol extends AProtocol {
         super.initLiveCycleController(liveCycleController);
 
         liveCycleController.putImplAll(new RMIProtocolLiveCycleImpl());
-
-        liveCycleController.getStartImplQueue().put("add-protocol", () -> {
-            server.getNetworking().getProtocolCollection().add(this);
-        });
-
-        liveCycleController.getStopSlowImplQueue().put("remove-protocol", () -> {
-            server.getNetworking().getProtocolCollection().remove(this);
-        });
-        liveCycleController.getStopForceImplQueue().put("remove-protocol", () -> {
-            server.getNetworking().getProtocolCollection().remove(this);
-        });
     }
 
     @Override

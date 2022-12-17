@@ -6,6 +6,7 @@ import com.japik.extension.ExtensionParams;
 import com.japik.extensions.rmiprotocol.shared.IRMIProtocolExtensionConnection;
 import com.japik.livecycle.controller.ILiveCycleImplId;
 import com.japik.livecycle.controller.LiveCycleController;
+import com.japik.livecycle.controller.LiveCycleImplId;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,16 @@ public final class RMIProtocolExtension extends AExtension<IRMIProtocolExtension
     protected void initLiveCycleController(LiveCycleController liveCycleController) {
         super.initLiveCycleController(liveCycleController);
         liveCycleController.putImplAll(protocolLiveCycleImplId, protocol.getLiveCycle());
+
+        liveCycleController.getInitImplQueue().put(
+                new LiveCycleImplId("add-protocol", LiveCycleController.PRIORITY_LOWER), () -> {
+            server.getNetworking().getProtocolCollection().add(protocol);
+        });
+
+        liveCycleController.getDestroyImplQueue().put(
+                new LiveCycleImplId("remove-protocol", LiveCycleController.PRIORITY_HIGHEST), () -> {
+            server.getNetworking().getProtocolCollection().remove(protocol);
+        });
     }
 
     @Getter

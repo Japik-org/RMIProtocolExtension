@@ -34,7 +34,7 @@ public final class RMIProtocolInstance extends AProtocolInstance {
     }
 
     @Override
-    protected <SC extends IServiceConnection> IServiceConnectionSafe<SC> createServiceConnectionSafeImpl(String serviceName) throws RemoteException {
+    protected <SC extends IServiceConnection> IServiceConnectionSafe<SC> createServiceConnectionSafeImpl(String serviceName) {
         return new RMIServiceConnectionSafe<>(serviceName, this);
     }
 

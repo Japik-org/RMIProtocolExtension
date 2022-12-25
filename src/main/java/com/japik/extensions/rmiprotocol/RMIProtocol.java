@@ -33,7 +33,7 @@ public final class RMIProtocol extends AProtocol {
     protected IProtocolInstance newInstanceImpl(Settings protocolSettings)
             throws RemoteException, NotBoundException {
         return new RMIProtocolInstance(
-                protocolSettings.get("host"),
+                protocolSettings.getOrDefault("host", "127.0.0.1"),
                 protocolSettings.getInt("port")
         );
     }

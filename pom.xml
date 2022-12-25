@@ -91,7 +91,7 @@
                                 <manifestEntries>
                                     <Shared-Subtype>RMIProtocol</Shared-Subtype>
                                     <Subtype>RMIProtocol</Subtype>
-                                    <Version>0.1</Version>
+                                    <Version>${project.version}</Version>
                                     <Base-Package>com.japik</Base-Package>
                                 </manifestEntries>
                             </manifestSection>
@@ -99,7 +99,7 @@
                                 <name>Extension-Shared</name>
                                 <manifestEntries>
                                     <Subtype>RMIProtocol</Subtype>
-                                    <Version>0.1</Version>
+                                    <Version>${project.version}</Version>
                                     <Base-Package>com.japik</Base-Package>
                                 </manifestEntries>
                             </manifestSection>
@@ -121,6 +121,9 @@
                             <outputDirectory>${project.build.directory}/out/libs</outputDirectory>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <excludeArtifactIds>Japik</excludeArtifactIds>
+                            <excludeGroupIds>com.japik.extensions</excludeGroupIds>
+                            <excludeGroupIds>com.japik.services</excludeGroupIds>
+                            <excludeGroupIds>com.japik.modules</excludeGroupIds>
                         </configuration>
                     </execution>
                 </executions>

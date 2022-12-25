@@ -42,7 +42,7 @@ public final class RMIProtocol extends AProtocol {
 
         @Override
         public void init() throws Throwable {
-            if (settings.getBoolean("enableLookup")) {
+            if (settings.getBooleanOrDefault("enableLookup", false)) {
                 registry = LocateRegistry.createRegistry(
                         settingsManager.getSettings().getInt("port")
                 );

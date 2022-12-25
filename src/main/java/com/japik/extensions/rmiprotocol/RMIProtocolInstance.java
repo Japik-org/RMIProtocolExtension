@@ -20,7 +20,7 @@ public final class RMIProtocolInstance extends AProtocolInstance {
             throws RemoteException, NotBoundException {
         super(RMIProtocol.protocolName);
         registry = LocateRegistry.getRegistry(host, port);
-        remoteLookup = (IRMILookup) registry.lookup("RMIProtocolExtension");
+        remoteLookup = (IRMILookup) registry.lookup(RMIProtocol.protocolName+"Protocol");
     }
 
     @Override

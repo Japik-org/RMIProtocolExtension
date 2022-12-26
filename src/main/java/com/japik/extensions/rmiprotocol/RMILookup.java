@@ -22,7 +22,6 @@ public final class RMILookup extends UnicastRemoteObject implements IRMILookup {
 
     @Override
     public <SC extends IServiceConnection> SC getServiceConnection(String serviceName) throws RemoteException, ServiceNotFoundException {
-        final IService<SC> service = server.getServiceLoader().getServiceOrThrow(serviceName);
-        return service.getServiceConnection();
+        return server.getServiceLoader().<SC>getServiceOrThrow(serviceName).getServiceConnection();
     }
 }

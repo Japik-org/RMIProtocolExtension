@@ -1,7 +1,9 @@
 package com.japik.extensions.rmiprotocol;
 
 import com.japik.Japik;
+import com.japik.service.IService;
 import com.japik.service.IServiceConnection;
+import com.japik.service.ServiceNotFoundException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -19,7 +21,8 @@ public final class RMILookup extends UnicastRemoteObject implements IRMILookup {
     }
 
     @Override
-    public IServiceConnection getServiceConnection(String serviceName) throws RemoteException {
-        return server.getServiceLoader().get(serviceName).getServiceConnection();
+    public <SC extends IServiceConnection> SC getServiceConnection(String serviceName) throws RemoteException, ServiceNotFoundException {
+        final IService<SC> service = server.getServiceLoader().getServiceOrThrow(serviceName);
+        return service.getServiceConnection();
     }
 }

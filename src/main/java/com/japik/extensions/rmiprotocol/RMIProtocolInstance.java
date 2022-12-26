@@ -4,6 +4,7 @@ import com.japik.extensions.rmiprotocol.shared.RMIServiceConnectionSafe;
 import com.japik.networking.AProtocolInstance;
 import com.japik.service.IServiceConnection;
 import com.japik.service.IServiceConnectionSafe;
+import com.japik.service.ServiceNotFoundException;
 import lombok.Getter;
 
 import java.rmi.NotBoundException;
@@ -29,7 +30,7 @@ public final class RMIProtocolInstance extends AProtocolInstance {
     }
 
     @Override
-    protected IServiceConnection getServiceConnectionImpl(String serviceName) throws RemoteException {
+    protected <SC extends IServiceConnection> SC getServiceConnectionImpl(String serviceName) throws RemoteException, ServiceNotFoundException {
         return remoteLookup.getServiceConnection(serviceName);
     }
 

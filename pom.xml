@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.japik.extensions</groupId>
-    <artifactId>RMIProtocolExtension</artifactId>
+    <artifactId>rmi-protocol-extension</artifactId>
     <version>0.1</version>
 
     <properties>
@@ -16,13 +16,12 @@
     <dependencies>
         <dependency>
             <groupId>com.japik</groupId>
-            <artifactId>Japik</artifactId>
-            <version>[0.6.0, 0.7.0)</version>
+            <artifactId>japik</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>rmiprotocol-extension-v${project.version}</finalName>
+        <finalName>rmiprotocol-extension-${project.version}</finalName>
 
         <resources>
             <resource>
